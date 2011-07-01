@@ -269,8 +269,17 @@ int cspe::map_to_bitmap(unsigned char* imdata, int stride)
 	//float spow = (float)scale;
 	//float spown = 1.0f/(spow-1.0);
 
-	if (mode == 0 || mode == 4)
+	
+
+	if (mode == 0)
 	{
+		float *rs = new float[2];
+		float zero = 1.0;
+		if (op == 4) zero = 0.0;
+		float mxv = abs(dr_high - zero);
+		float mnv = abs(dr_low - zero);
+		float mx = (mxv>mnv)?mxv:mnv;
+
 		for (long j = 0; j < sizey_ups; j++)
 		{
 			for (long i=0; i < sizex_ups; i++)
@@ -278,11 +287,28 @@ int cspe::map_to_bitmap(unsigned char* imdata, int stride)
 				long ii = p_xy_v1(i,j,sizex_ups, sizey_ups);
 				long jj = 3 * p_xy_v1(i,j,stride/3, sizey_ups);
 				float val = buffer[ii];
-				val = clamp(val, dr_low, dr_high);
-				unsigned char cval = (unsigned char)255.0 * val;//(powf(spow,val)-1.0)*spown; 
-				imdata[jj] = cval;
-				imdata[jj+1] = cval;
-				imdata[jj+2] = cval;
+				unsigned char cval;
+				unsigned char rval;
+				unsigned char bval;
+
+				switch(scale)
+				{
+				case 1:
+					val = clamp(val, dr_low, dr_high);
+					cval = (unsigned char)255.0 * val;//(powf(spow,val)-1.0)*spown;
+					imdata[jj] = cval;
+					imdata[jj+1] = cval;
+					imdata[jj+2] = cval;
+					break;
+				case 2:
+					clampU(val, dr_low, dr_high, mx, zero, &rs);
+					rval = (unsigned char)255.0 * rs[0];
+					bval = (unsigned char)255.0 * rs[1];
+					imdata[jj] = rval;
+					imdata[jj+1] = 0;
+					imdata[jj+2] = bval;
+				break;
+				}
 			}
 		}
 	}
