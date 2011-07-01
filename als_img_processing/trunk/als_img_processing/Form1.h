@@ -418,6 +418,7 @@ namespace als_img_processing {
 			this->maskedTextBox5->Name = L"maskedTextBox5";
 			this->maskedTextBox5->Size = System::Drawing::Size(72, 20);
 			this->maskedTextBox5->TabIndex = 27;
+			this->maskedTextBox5->Validated += gcnew System::EventHandler(this, &Form1::maskedTextBox5_Validated);
 			// 
 			// maskedTextBox6
 			// 
@@ -425,6 +426,7 @@ namespace als_img_processing {
 			this->maskedTextBox6->Name = L"maskedTextBox6";
 			this->maskedTextBox6->Size = System::Drawing::Size(72, 20);
 			this->maskedTextBox6->TabIndex = 26;
+			this->maskedTextBox6->Validated += gcnew System::EventHandler(this, &Form1::maskedTextBox6_Validated);
 			// 
 			// button9
 			// 
@@ -917,23 +919,59 @@ private: System::Void listBox2_SelectedIndexChanged(System::Object^  sender, Sys
 private: System::Void button10_Click(System::Object^  sender, System::EventArgs^  e) {
 			 cspe::dr_high += cspe::dr_step;
 			 maskedTextBox5->Text = Convert::ToString(cspe::dr_high);
+			 switch (listBox1->SelectedIndex)
+			 {
+			 case 0:
+				 cspe::dr_high_AdB = cspe::dr_high;
+				 break;
+			 case 4:
+				 cspe::dr_high_AmBdApB = cspe::dr_high;
+				 break;
+			 }
 			 OverlapPair();
 		 }
 private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if (cspe::dr_high == 0.0f) return;
 			 cspe::dr_high -= cspe::dr_step;
 			 maskedTextBox5->Text = Convert::ToString(cspe::dr_high);
+			 switch (listBox1->SelectedIndex)
+			 {
+			 case 0:
+				 cspe::dr_high_AdB = cspe::dr_high;
+				 break;
+			 case 4:
+				 cspe::dr_high_AmBdApB = cspe::dr_high;
+				 break;
+			 }
 			 OverlapPair();
 		 }
 private: System::Void button11_Click(System::Object^  sender, System::EventArgs^  e) {
 			 cspe::dr_low += cspe::dr_step;
 			 maskedTextBox6->Text = Convert::ToString(cspe::dr_low);
+			 switch (listBox1->SelectedIndex)
+			 {
+			 case 0:
+			     cspe::dr_low_AdB = cspe::dr_low;
+				 break;
+			 case 4:
+				 cspe::dr_low_AmBdApB = cspe::dr_low;
+				 break;
+			 }
 			 OverlapPair();
 		 }
 private: System::Void button12_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if (cspe::dr_low == 0.0f) return;
 			 cspe::dr_low -= cspe::dr_step;
 			 maskedTextBox6->Text = Convert::ToString(cspe::dr_low);
+			 switch (listBox1->SelectedIndex)
+			 {
+			 case 0:
+			     cspe::dr_low_AdB = cspe::dr_low;
+				 break;
+			 case 4:
+				 cspe::dr_low_AmBdApB = cspe::dr_low;
+				 break;
+			 }
 			 OverlapPair();
 		 }
 private: System::Void maskedTextBox1_Validated(System::Object^  sender, System::EventArgs^  e) {
@@ -1052,7 +1090,46 @@ private: System::Void listBox3_SelectedIndexChanged(System::Object^  sender, Sys
 private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			 switch (listBox1->SelectedIndex)
+			{
+			case 0:
+				cspe::dr_high = cspe::dr_high_AdB;
+				cspe::dr_low = cspe::dr_low_AdB;	
+				break;
+			case 4:
+				cspe::dr_high = cspe::dr_high_AmBdApB;
+				cspe::dr_low = cspe::dr_low_AmBdApB;
+				break;
+			}
+			 maskedTextBox5->Text = Convert::ToString(cspe::dr_high);
+			maskedTextBox6->Text = Convert::ToString(cspe::dr_low);
 			 OverlapPair();
+		 }
+private: System::Void maskedTextBox5_Validated(System::Object^  sender, System::EventArgs^  e) {
+			cspe::dr_high = Convert::ToSingle(maskedTextBox5->Text);
+			OverlapPair();
+			switch (listBox1->SelectedIndex)
+			{
+			case 0:
+				cspe::dr_high_AdB = cspe::dr_high;
+				break;
+			case 4:
+				cspe::dr_high_AmBdApB = cspe::dr_high;
+				break;
+			}
+		 }
+private: System::Void maskedTextBox6_Validated(System::Object^  sender, System::EventArgs^  e) {
+			cspe::dr_low = Convert::ToSingle(maskedTextBox6->Text);
+			switch (listBox1->SelectedIndex)
+			{
+			case 0:
+				cspe::dr_low_AdB = cspe::dr_low;
+				break;
+			case 4:
+				cspe::dr_low_AmBdApB = cspe::dr_low;
+				break;
+			}
+			OverlapPair();
 		 }
 };
 }
