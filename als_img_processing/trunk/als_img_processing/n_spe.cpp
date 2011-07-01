@@ -273,15 +273,30 @@ int cspe::map_to_bitmap(unsigned char* imdata, int stride)
 
 	if (mode == 0)
 	{
-		float *rs = new float[2];
+		int threads = 0;
+#pragma omp parallel
+	{
+#pragma omp sections
+		{
+#pragma omp section
+			{
+				threads = omp_get_num_threads();
+			}
+		}
+	}
+
+		float *rs = new float[2*threads];
+
 		float zero = 1.0;
 		if (op == 4) zero = 0.0;
 		float mxv = abs(dr_high - zero);
 		float mnv = abs(dr_low - zero);
 		float mx = (mxv>mnv)?mxv:mnv;
-
+#pragma omp parallel for
 		for (long j = 0; j < sizey_ups; j++)
 		{
+			int thread = omp_get_thread_num();
+			float *rst = &rs[2*thread];
 			for (long i=0; i < sizex_ups; i++)
 			{
 				long ii = p_xy_v1(i,j,sizex_ups, sizey_ups);
@@ -301,9 +316,9 @@ int cspe::map_to_bitmap(unsigned char* imdata, int stride)
 					imdata[jj+2] = cval;
 					break;
 				case 2:
-					clampU(val, dr_low, dr_high, mx, zero, &rs);
-					rval = (unsigned char)255.0 * rs[0];
-					bval = (unsigned char)255.0 * rs[1];
+					clampU(val, dr_low, dr_high, mx, zero, &rst);
+					rval = (unsigned char)255.0 * rst[0];
+					bval = (unsigned char)255.0 * rst[1];
 					imdata[jj] = rval;
 					imdata[jj+1] = 0;
 					imdata[jj+2] = bval;
