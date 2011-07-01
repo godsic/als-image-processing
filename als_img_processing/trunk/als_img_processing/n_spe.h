@@ -106,15 +106,17 @@ inline float clamp(float val, float min, float max)
 	return (val-min)/(max-min);
 }
 
-inline float clampn(float val, float min, float max)
+inline void clampU(float val, float min, float max, float mx, float zero, float** res)
 {
+	*(*res + 0) = 0;
+	*(*res + 1) = 0;
+
 	val = (val>max)?max:val;
 	val = (val<min)?min:val;
-	float pi = abs((max - 1.0f)); 
-	float ni = abs((min - 1.0f));
-    float i = (pi>ni)?pi:ni;
-
-	return (val-min)/(max-min);
+	
+	val = val - zero;
+	if (val > 0.0) *(*res + 0) = abs(val/mx);
+	else *(*res + 1) = abs(val/mx);
 }
 
 #pragma managed

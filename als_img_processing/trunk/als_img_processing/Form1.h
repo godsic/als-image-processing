@@ -563,10 +563,10 @@ namespace als_img_processing {
 			// listBox3
 			// 
 			this->listBox3->FormattingEnabled = true;
-			this->listBox3->Items->AddRange(gcnew cli::array< System::Object^  >(5) {L"LINEAR", L"POW2", L"POW3", L"POW4", L"POW5"});
+			this->listBox3->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"BW", L"COLOR"});
 			this->listBox3->Location = System::Drawing::Point(609, 208);
 			this->listBox3->Name = L"listBox3";
-			this->listBox3->Size = System::Drawing::Size(79, 95);
+			this->listBox3->Size = System::Drawing::Size(79, 69);
 			this->listBox3->TabIndex = 39;
 			this->listBox3->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox3_SelectedIndexChanged);
 			// 
