@@ -34,6 +34,11 @@ int cspe::mode = 0;
 int cspe::op = 0;
 int cspe::ups = 1;
 int cspe::scale = 1;
+float cspe::dr_low_AdB = 0.83f;
+float cspe::dr_high_AdB = 1.3f;
+
+float cspe::dr_low_AmBdApB = -0.1f;
+float cspe::dr_high_AmBdApB = 0.1f;
 
 int cspe::file_loader(const char* name, char** file)
 {
