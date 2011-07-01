@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <omp.h>
 
 #define SPEHEADER 4100
 typedef __int16 WORDS;
