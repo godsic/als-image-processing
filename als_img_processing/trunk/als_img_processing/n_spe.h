@@ -10,12 +10,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <omp.h>
+#include <acml.h>
 
 #define SPEHEADER 4100
+#define INTERVALS 16384
+
 typedef __int16 WORDS;
 typedef unsigned __int16 UWORDS;
+
 
 struct SPE{
 	char blank1[42];			//+0
@@ -65,6 +70,14 @@ public:
 	static float dr_low_AmBdApB;
 	static float dr_high_AmBdApB;
 
+	static float rrmn;
+	static float llmn;
+
+	static float llsd;
+	static float rrsd;
+
+	static double S;
+
 	static int cur_pair;
 
 	static int mode;
@@ -81,9 +94,50 @@ public:
     static int map_to_bitmap(unsigned char* imdata, int stride);
 	static float vmaximum(float* buffer, long size);
 	static int tofloat(sspe* in, float** out);
+	static int getEntropy();
+	static int doAutoOverlap();
+	static int doAutoOverlapCC();
+	static int doAutoOverlapCCA();
+	static int doAutoOverlapCCAx8();
+	static int getCC();
+	static int getMeanSTD(float* buffer, long size, float** mean, float** stddiv);
 };
 
+inline void p_shifted(long x, long y, long sizex, long sizey, long** shx, long** shy)
+{
+	long hx = sizex / 2;
+	long hy = sizey / 2;
 
+	long tsx = 0;
+	long tsy = 0;
+
+	if (x < hx && y < hy)
+	{
+		tsx = hx + x;
+		tsy = hy + y;
+	}
+
+	if (x > hx && y < hy)
+	{
+		tsx = x - hx;
+		tsy = hy;
+	}
+
+	if (x < hx && y > hy)
+	{
+		tsx = x;
+		tsy = y - hy;
+	}
+
+	if (x > hx && y > hy)
+	{
+		tsx = x - hx;
+		tsy = y - hy;
+	}
+
+	*shx = &tsx;
+	*shy = &tsy;
+}
 
 inline long p_xy_v1(long x, long y, long sizex, long sizey)
 {
@@ -100,11 +154,49 @@ inline long p_xy_v1_s(long x, long y, long sizex, long sizey)
 	return y * sizex + x;
 }
 
+inline float round(float x)
+{
+	float xx = x;
+	float rx = fmodf(x,1.0f);
+	if (rx >= 0.5) xx++;
+	return xx;
+}
+
 inline float clamp(float val, float min, float max)
 {
 	val = (val>max)?max:val;
 	val = (val<min)?min:val;
 	return (val-min)/(max-min);
+}
+
+inline float highpass_fd_2d(float x, float y)
+{
+	float A = cosf(M_PI * x)*cosf(M_PI * y);
+	return (1.0f - A) * (2.0f - A);
+}
+
+inline float blackman_2d(int x, int y, int sx, int sy)
+{
+	float wx = 0.42f - 0.5f * cosf(2.0f*M_PI*(float)x/(float)(sx-1)) + 0.08f * cosf(4.0f*M_PI*(float)x/(float)(sx-1));
+	float wy = 0.42f - 0.5f * cosf(2.0f*M_PI*(float)y/(float)(sy-1)) + 0.08f * cosf(4.0f*M_PI*(float)y/(float)(sy-1));
+
+	return wx * wy;
+}
+
+inline float hamming_2d(int x, int y, int sx, int sy)
+{
+	float wx = 0.54f - 0.46f * cosf(2.0f*M_PI*(float)x/(float)(sx-1));
+	float wy = 0.54f - 0.46f * cosf(2.0f*M_PI*(float)y/(float)(sy-1));
+
+	return wx * wy;
+}
+
+inline float hanning_2d(int x, int y, int sx, int sy)
+{
+	float wx = 0.5f - 0.5f * cosf(2.0f*M_PI*(float)x/(float)(sx-1));
+	float wy = 0.5f - 0.5f * cosf(2.0f*M_PI*(float)y/(float)(sy-1));
+
+	return wx * wy;
 }
 
 inline void clampU(float val, float min, float max, float mx, float zero, float** res)
