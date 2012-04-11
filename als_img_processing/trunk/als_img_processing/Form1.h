@@ -81,16 +81,20 @@ namespace als_img_processing {
 	private: System::Windows::Forms::Button^  button12;
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox7;
 	private: System::Windows::Forms::Button^  button13;
-	private: System::Windows::Forms::LinkLabel^  linkLabel1;
+
 	private: System::Windows::Forms::CheckBox^  checkBox1;
 	private: System::Windows::Forms::Label^  label7;
-	private: System::Windows::Forms::Label^  label8;
+
 	private: System::Windows::Forms::Button^  button14;
 	private: System::Windows::Forms::Button^  button15;
 	private: System::Windows::Forms::ListBox^  listBox3;
 	private: System::Windows::Forms::Label^  label9;
 	private: System::Windows::Forms::Label^  label10;
 	private: System::Windows::Forms::Label^  label11;
+	private: System::Windows::Forms::ToolStripLabel^  toolStripLabel2;
+	private: System::Windows::Forms::ToolStripButton^  toolStripButton2;
+	private: System::Windows::Forms::Button^  button16;
+	private: System::Windows::Forms::Button^  button17;
 
 
 
@@ -112,6 +116,8 @@ namespace als_img_processing {
 			this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
 			this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->toolStripLabel1 = (gcnew System::Windows::Forms::ToolStripLabel());
+			this->toolStripLabel2 = (gcnew System::Windows::Forms::ToolStripLabel());
+			this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
@@ -141,16 +147,16 @@ namespace als_img_processing {
 			this->button12 = (gcnew System::Windows::Forms::Button());
 			this->maskedTextBox7 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->button13 = (gcnew System::Windows::Forms::Button());
-			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->button14 = (gcnew System::Windows::Forms::Button());
 			this->button15 = (gcnew System::Windows::Forms::Button());
 			this->listBox3 = (gcnew System::Windows::Forms::ListBox());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
+			this->button16 = (gcnew System::Windows::Forms::Button());
+			this->button17 = (gcnew System::Windows::Forms::Button());
 			this->toolStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -158,9 +164,12 @@ namespace als_img_processing {
 			// toolStrip1
 			// 
 			this->toolStrip1->AutoSize = false;
+			this->toolStrip1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(224)), 
+				static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->toolStrip1->GripStyle = System::Windows::Forms::ToolStripGripStyle::Hidden;
 			this->toolStrip1->ImageScalingSize = System::Drawing::Size(32, 32);
-			this->toolStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {this->toolStripButton1, 
-				this->toolStripLabel1});
+			this->toolStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {this->toolStripButton1, 
+				this->toolStripLabel1, this->toolStripLabel2, this->toolStripButton2});
 			this->toolStrip1->Location = System::Drawing::Point(0, 0);
 			this->toolStrip1->Name = L"toolStrip1";
 			this->toolStrip1->Size = System::Drawing::Size(695, 64);
@@ -188,28 +197,54 @@ namespace als_img_processing {
 			this->toolStripLabel1->Size = System::Drawing::Size(61, 61);
 			this->toolStripLabel1->Text = L"0/0";
 			// 
+			// toolStripLabel2
+			// 
+			this->toolStripLabel2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->toolStripLabel2->Name = L"toolStripLabel2";
+			this->toolStripLabel2->Size = System::Drawing::Size(33, 61);
+			this->toolStripLabel2->Text = L"0";
+			// 
+			// toolStripButton2
+			// 
+			this->toolStripButton2->Font = (gcnew System::Drawing::Font(L"Cambria", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"toolStripButton2.Image")));
+			this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->toolStripButton2->Name = L"toolStripButton2";
+			this->toolStripButton2->Size = System::Drawing::Size(89, 61);
+			this->toolStripButton2->Text = L"AUTO";
+			this->toolStripButton2->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageAboveText;
+			this->toolStripButton2->Click += gcnew System::EventHandler(this, &Form1::toolStripButton2_Click);
+			// 
 			// button1
 			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button1->BackColor = System::Drawing::Color::LightBlue;
+			this->button1->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button1->Font = (gcnew System::Drawing::Font(L"Cambria", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(609, 558);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(79, 79);
+			this->button1->Size = System::Drawing::Size(83, 79);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L">";
-			this->button1->UseVisualStyleBackColor = true;
+			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
 			// button2
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button2->BackColor = System::Drawing::Color::LightBlue;
+			this->button2->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Cambria", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(6, 558);
+			this->button2->Location = System::Drawing::Point(3, 558);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(79, 79);
+			this->button2->Size = System::Drawing::Size(85, 79);
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"<";
-			this->button2->UseVisualStyleBackColor = true;
+			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
 			// pictureBox1
@@ -224,53 +259,69 @@ namespace als_img_processing {
 			// 
 			// button3
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button3->BackColor = System::Drawing::Color::LightBlue;
+			this->button3->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button3->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button3->Location = System::Drawing::Point(614, 324);
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(27, 29);
 			this->button3->TabIndex = 4;
 			this->button3->Text = L"+";
-			this->button3->UseVisualStyleBackColor = true;
+			this->button3->UseVisualStyleBackColor = false;
 			this->button3->Click += gcnew System::EventHandler(this, &Form1::button3_Click);
 			this->button3->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::button3_MouseWheel);
 			// 
 			// button4
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button4->BackColor = System::Drawing::Color::LightBlue;
+			this->button4->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button4->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button4->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button4->Location = System::Drawing::Point(614, 424);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(27, 29);
 			this->button4->TabIndex = 5;
 			this->button4->Text = L"-";
-			this->button4->UseVisualStyleBackColor = true;
+			this->button4->UseVisualStyleBackColor = false;
 			this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
 			this->button4->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::button3_MouseWheel);
 			// 
 			// button5
 			// 
-			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button5->BackColor = System::Drawing::Color::LightBlue;
+			this->button5->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button5->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button5->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button5->Location = System::Drawing::Point(247, 642);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(27, 29);
 			this->button5->TabIndex = 7;
 			this->button5->Text = L"-";
-			this->button5->UseVisualStyleBackColor = true;
+			this->button5->UseVisualStyleBackColor = false;
 			this->button5->Click += gcnew System::EventHandler(this, &Form1::button5_Click);
 			this->button5->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::button5_MouseWheel);
 			// 
 			// button6
 			// 
-			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button6->BackColor = System::Drawing::Color::LightBlue;
+			this->button6->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button6->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button6->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button6->Location = System::Drawing::Point(436, 642);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(27, 29);
 			this->button6->TabIndex = 6;
 			this->button6->Text = L"+";
-			this->button6->UseVisualStyleBackColor = true;
+			this->button6->UseVisualStyleBackColor = false;
 			this->button6->Click += gcnew System::EventHandler(this, &Form1::button6_Click);
 			this->button6->MouseWheel += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::button5_MouseWheel);
 			// 
@@ -281,7 +332,7 @@ namespace als_img_processing {
 			this->listBox1->FormattingEnabled = true;
 			this->listBox1->ItemHeight = 16;
 			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(5) {L"A/B", L"A-B", L"A+B", L"A*B", L"(A-B)/(A+B)"});
-			this->listBox1->Location = System::Drawing::Point(92, 75);
+			this->listBox1->Location = System::Drawing::Point(92, 85);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(168, 36);
 			this->listBox1->TabIndex = 8;
@@ -292,7 +343,7 @@ namespace als_img_processing {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(89, 59);
+			this->label1->Location = System::Drawing::Point(89, 69);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(56, 13);
 			this->label1->TabIndex = 9;
@@ -326,7 +377,7 @@ namespace als_img_processing {
 			this->listBox2->FormattingEnabled = true;
 			this->listBox2->ItemHeight = 16;
 			this->listBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"Mixed", L"Left", L"Right"});
-			this->listBox2->Location = System::Drawing::Point(266, 75);
+			this->listBox2->Location = System::Drawing::Point(266, 85);
 			this->listBox2->Name = L"listBox2";
 			this->listBox2->Size = System::Drawing::Size(168, 36);
 			this->listBox2->TabIndex = 15;
@@ -334,22 +385,32 @@ namespace als_img_processing {
 			// 
 			// button7
 			// 
-			this->button7->Location = System::Drawing::Point(533, 95);
+			this->button7->BackColor = System::Drawing::Color::LightBlue;
+			this->button7->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button7->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->button7->Location = System::Drawing::Point(528, 96);
 			this->button7->Name = L"button7";
 			this->button7->Size = System::Drawing::Size(75, 23);
 			this->button7->TabIndex = 16;
 			this->button7->Text = L"Save image";
-			this->button7->UseVisualStyleBackColor = true;
+			this->button7->UseVisualStyleBackColor = false;
 			this->button7->Click += gcnew System::EventHandler(this, &Form1::button7_Click);
 			// 
 			// button8
 			// 
-			this->button8->Location = System::Drawing::Point(533, 66);
+			this->button8->BackColor = System::Drawing::Color::LightBlue;
+			this->button8->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button8->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->button8->Location = System::Drawing::Point(528, 67);
 			this->button8->Name = L"button8";
 			this->button8->Size = System::Drawing::Size(75, 23);
 			this->button8->TabIndex = 17;
 			this->button8->Text = L"Save DAT";
-			this->button8->UseVisualStyleBackColor = true;
+			this->button8->UseVisualStyleBackColor = false;
 			this->button8->Click += gcnew System::EventHandler(this, &Form1::button8_Click);
 			// 
 			// maskedTextBox1
@@ -406,7 +467,7 @@ namespace als_img_processing {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(12, 204);
+			this->label6->Location = System::Drawing::Point(3, 204);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(29, 13);
 			this->label6->TabIndex = 28;
@@ -414,98 +475,106 @@ namespace als_img_processing {
 			// 
 			// maskedTextBox5
 			// 
-			this->maskedTextBox5->Location = System::Drawing::Point(13, 281);
+			this->maskedTextBox5->Location = System::Drawing::Point(3, 281);
 			this->maskedTextBox5->Name = L"maskedTextBox5";
-			this->maskedTextBox5->Size = System::Drawing::Size(72, 20);
+			this->maskedTextBox5->Size = System::Drawing::Size(85, 20);
 			this->maskedTextBox5->TabIndex = 27;
 			this->maskedTextBox5->Validated += gcnew System::EventHandler(this, &Form1::maskedTextBox5_Validated);
 			// 
 			// maskedTextBox6
 			// 
-			this->maskedTextBox6->Location = System::Drawing::Point(13, 385);
+			this->maskedTextBox6->Location = System::Drawing::Point(3, 385);
 			this->maskedTextBox6->Name = L"maskedTextBox6";
-			this->maskedTextBox6->Size = System::Drawing::Size(72, 20);
+			this->maskedTextBox6->Size = System::Drawing::Size(85, 20);
 			this->maskedTextBox6->TabIndex = 26;
 			this->maskedTextBox6->Validated += gcnew System::EventHandler(this, &Form1::maskedTextBox6_Validated);
 			// 
 			// button9
 			// 
-			this->button9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button9->BackColor = System::Drawing::Color::LightBlue;
+			this->button9->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button9->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button9->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button9->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button9->Location = System::Drawing::Point(58, 307);
 			this->button9->Name = L"button9";
 			this->button9->Size = System::Drawing::Size(27, 29);
 			this->button9->TabIndex = 25;
 			this->button9->Text = L"-";
-			this->button9->UseVisualStyleBackColor = true;
+			this->button9->UseVisualStyleBackColor = false;
 			this->button9->Click += gcnew System::EventHandler(this, &Form1::button9_Click);
 			// 
 			// button10
 			// 
-			this->button10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button10->BackColor = System::Drawing::Color::LightBlue;
+			this->button10->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button10->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button10->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button10->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button10->Location = System::Drawing::Point(58, 246);
 			this->button10->Name = L"button10";
 			this->button10->Size = System::Drawing::Size(27, 29);
 			this->button10->TabIndex = 24;
 			this->button10->Text = L"+";
-			this->button10->UseVisualStyleBackColor = true;
+			this->button10->UseVisualStyleBackColor = false;
 			this->button10->Click += gcnew System::EventHandler(this, &Form1::button10_Click);
 			// 
 			// button11
 			// 
-			this->button11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button11->BackColor = System::Drawing::Color::LightBlue;
+			this->button11->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button11->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button11->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button11->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button11->Location = System::Drawing::Point(58, 350);
 			this->button11->Name = L"button11";
 			this->button11->Size = System::Drawing::Size(27, 29);
 			this->button11->TabIndex = 29;
 			this->button11->Text = L"+";
-			this->button11->UseVisualStyleBackColor = true;
+			this->button11->UseVisualStyleBackColor = false;
 			this->button11->Click += gcnew System::EventHandler(this, &Form1::button11_Click);
 			// 
 			// button12
 			// 
-			this->button12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+			this->button12->BackColor = System::Drawing::Color::LightBlue;
+			this->button12->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button12->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button12->Font = (gcnew System::Drawing::Font(L"Cambria", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
+			this->button12->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->button12->Location = System::Drawing::Point(58, 411);
 			this->button12->Name = L"button12";
 			this->button12->Size = System::Drawing::Size(27, 29);
 			this->button12->TabIndex = 30;
 			this->button12->Text = L"-";
-			this->button12->UseVisualStyleBackColor = true;
+			this->button12->UseVisualStyleBackColor = false;
 			this->button12->Click += gcnew System::EventHandler(this, &Form1::button12_Click);
 			// 
 			// maskedTextBox7
 			// 
-			this->maskedTextBox7->Location = System::Drawing::Point(13, 220);
+			this->maskedTextBox7->Location = System::Drawing::Point(3, 220);
 			this->maskedTextBox7->Name = L"maskedTextBox7";
-			this->maskedTextBox7->Size = System::Drawing::Size(72, 20);
+			this->maskedTextBox7->Size = System::Drawing::Size(85, 20);
 			this->maskedTextBox7->TabIndex = 31;
 			this->maskedTextBox7->Validated += gcnew System::EventHandler(this, &Form1::maskedTextBox7_Validated);
 			// 
 			// button13
 			// 
-			this->button13->Location = System::Drawing::Point(452, 96);
+			this->button13->BackColor = System::Drawing::Color::LightBlue;
+			this->button13->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button13->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button13->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->button13->Location = System::Drawing::Point(447, 96);
 			this->button13->Name = L"button13";
 			this->button13->Size = System::Drawing::Size(75, 23);
 			this->button13->TabIndex = 32;
 			this->button13->Text = L"Save SPE";
-			this->button13->UseVisualStyleBackColor = true;
+			this->button13->UseVisualStyleBackColor = false;
 			this->button13->Click += gcnew System::EventHandler(this, &Form1::button13_Click);
-			// 
-			// linkLabel1
-			// 
-			this->linkLabel1->AutoSize = true;
-			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
-				static_cast<System::Byte>(0)));
-			this->linkLabel1->Location = System::Drawing::Point(403, 27);
-			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(289, 20);
-			this->linkLabel1->TabIndex = 33;
-			this->linkLabel1->TabStop = true;
-			this->linkLabel1->Text = L"Mykola Dvornik, University of Exeter, UK";
-			this->linkLabel1->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &Form1::linkLabel1_LinkClicked);
 			// 
 			// checkBox1
 			// 
@@ -525,39 +594,40 @@ namespace als_img_processing {
 			this->label7->AutoSize = true;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->label7->Location = System::Drawing::Point(263, 59);
+			this->label7->Location = System::Drawing::Point(263, 69);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(62, 13);
 			this->label7->TabIndex = 35;
 			this->label7->Text = L"View mode:";
 			// 
-			// label8
-			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(404, 9);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(172, 13);
-			this->label8->TabIndex = 36;
-			this->label8->Text = L"Please report bugs or feedbacks to";
-			// 
 			// button14
 			// 
-			this->button14->Location = System::Drawing::Point(10, 125);
+			this->button14->BackColor = System::Drawing::Color::LightBlue;
+			this->button14->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button14->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button14->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->button14->Location = System::Drawing::Point(3, 125);
 			this->button14->Name = L"button14";
-			this->button14->Size = System::Drawing::Size(75, 46);
+			this->button14->Size = System::Drawing::Size(84, 46);
 			this->button14->TabIndex = 37;
 			this->button14->Text = L"Load Left";
-			this->button14->UseVisualStyleBackColor = true;
+			this->button14->UseVisualStyleBackColor = false;
 			this->button14->Click += gcnew System::EventHandler(this, &Form1::button14_Click);
 			// 
 			// button15
 			// 
+			this->button15->BackColor = System::Drawing::Color::LightBlue;
+			this->button15->FlatAppearance->MouseOverBackColor = System::Drawing::Color::DeepSkyBlue;
+			this->button15->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button15->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
 			this->button15->Location = System::Drawing::Point(609, 125);
 			this->button15->Name = L"button15";
-			this->button15->Size = System::Drawing::Size(75, 46);
+			this->button15->Size = System::Drawing::Size(83, 46);
 			this->button15->TabIndex = 38;
 			this->button15->Text = L"Load right";
-			this->button15->UseVisualStyleBackColor = true;
+			this->button15->UseVisualStyleBackColor = false;
 			this->button15->Click += gcnew System::EventHandler(this, &Form1::button15_Click);
 			// 
 			// listBox3
@@ -566,7 +636,7 @@ namespace als_img_processing {
 			this->listBox3->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"BW", L"COLOR"});
 			this->listBox3->Location = System::Drawing::Point(609, 208);
 			this->listBox3->Name = L"listBox3";
-			this->listBox3->Size = System::Drawing::Size(79, 69);
+			this->listBox3->Size = System::Drawing::Size(83, 69);
 			this->listBox3->TabIndex = 39;
 			this->listBox3->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox3_SelectedIndexChanged);
 			// 
@@ -582,7 +652,7 @@ namespace als_img_processing {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(12, 265);
+			this->label10->Location = System::Drawing::Point(3, 265);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(46, 13);
 			this->label10->TabIndex = 41;
@@ -591,27 +661,60 @@ namespace als_img_processing {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(12, 369);
+			this->label11->Location = System::Drawing::Point(3, 369);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(43, 13);
 			this->label11->TabIndex = 42;
 			this->label11->Text = L"DR Min";
+			// 
+			// button16
+			// 
+			this->button16->BackColor = System::Drawing::Color::DarkSalmon;
+			this->button16->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Red;
+			this->button16->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button16->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->button16->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button16->Location = System::Drawing::Point(609, 67);
+			this->button16->Name = L"button16";
+			this->button16->Size = System::Drawing::Size(83, 54);
+			this->button16->TabIndex = 43;
+			this->button16->Text = L"REPORT BUG";
+			this->button16->UseVisualStyleBackColor = false;
+			this->button16->Click += gcnew System::EventHandler(this, &Form1::button16_Click);
+			// 
+			// button17
+			// 
+			this->button17->BackColor = System::Drawing::Color::Tomato;
+			this->button17->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Red;
+			this->button17->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button17->Font = (gcnew System::Drawing::Font(L"Cambria", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->button17->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->button17->Location = System::Drawing::Point(649, 12);
+			this->button17->Name = L"button17";
+			this->button17->Size = System::Drawing::Size(34, 41);
+			this->button17->TabIndex = 44;
+			this->button17->Text = L"X";
+			this->button17->UseVisualStyleBackColor = false;
+			this->button17->Click += gcnew System::EventHandler(this, &Form1::button17_Click);
 			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(695, 722);
+			this->ControlBox = false;
+			this->Controls->Add(this->button17);
+			this->Controls->Add(this->button16);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label10);
 			this->Controls->Add(this->label9);
 			this->Controls->Add(this->listBox3);
 			this->Controls->Add(this->button15);
 			this->Controls->Add(this->button14);
-			this->Controls->Add(this->label8);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->checkBox1);
-			this->Controls->Add(this->linkLabel1);
 			this->Controls->Add(this->button13);
 			this->Controls->Add(this->maskedTextBox7);
 			this->Controls->Add(this->button12);
@@ -642,12 +745,12 @@ namespace als_img_processing {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->toolStrip1);
-			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedToolWindow;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->MaximizeBox = false;
 			this->Name = L"Form1";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
-			this->Text = L"Image Aligment Tool (c) 2011 Mykola Dvornik";
+			this->Text = L"Image Aligment Tool (c) 2011-2012 Mykola Dvornik";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->toolStrip1->ResumeLayout(false);
 			this->toolStrip1->PerformLayout();
@@ -849,6 +952,10 @@ namespace als_img_processing {
 				 cspe::op = listBox1->SelectedIndex;
 
 				 cspe::overlap(); 
+				 //get entropy
+				 //cspe::getEntropy();
+				 //System::Double dS = Convert::ToDouble(cspe::S);
+				 //toolStripLabel2->Text = dS::ToString("%.3f");
 				//plot xy
 				 System::Drawing::Rectangle rect = System::Drawing::Rectangle(0,0,mimage->Width,mimage->Height);	
 				 System::Drawing::Imaging::BitmapData^ bmpData = mimage->LockBits( rect, System::Drawing::Imaging::ImageLockMode::ReadWrite, mimage->PixelFormat );
@@ -1130,6 +1237,29 @@ private: System::Void maskedTextBox6_Validated(System::Object^  sender, System::
 				break;
 			}
 			OverlapPair();
+		 }
+private: System::Void toolStripButton2_Click(System::Object^  sender, System::EventArgs^  e) {
+			 
+			 //OverlapPair();
+			 //cspe::getCC();
+			 cspe::doAutoOverlapCCA();
+			 maskedTextBox1->Text = Convert::ToString(cspe::offset_y);
+			 maskedTextBox3->Text = Convert::ToString(cspe::offset_x);
+			 OverlapPair();
+		 }
+private: System::Void button17_Click(System::Object^  sender, System::EventArgs^  e) {
+			 System::Windows::Forms::Application::Exit();
+
+		 }
+private: System::Void button16_Click(System::Object^  sender, System::EventArgs^  e) {
+			 try
+			 {
+				Process::Start("mailto:mykola.dvornik@gmail.com");
+			 }
+			 catch (Win32Exception^ e)
+			 {
+				 MessageBox::Show(e->Message);
+			 }
 		 }
 };
 }
